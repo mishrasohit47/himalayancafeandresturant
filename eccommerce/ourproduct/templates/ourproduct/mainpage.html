@@ -1,0 +1,80 @@
+{% extends 'layouts.html' %} 
+
+{% load static %} 
+
+
+
+
+
+{% block title %} 
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>Product</title> 
+{% include 'ourproduct/header.html' %} 
+{% endblock %} 
+
+{% block main_content %} 
+{% for msg in messages %} 
+
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %} 
+        <div class="alert alert-success">
+            {{msg}}
+
+        </div> 
+        {% endif %} 
+
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %} 
+        <div class="alert alert-danger"> 
+            {{ msg }}
+
+        </div> 
+        {% endif %}
+
+        {% endfor %}
+
+<!--overflow is used to show horizontal scroll bar if the screen is to small -->
+
+
+
+
+<div style="overflow-x:auto;"> 
+
+    <table border="3" class="table table-bordered table-striped table-secondary"> 
+
+        <tr> 
+            <td>ProductName</td> 
+            <td>ProductPrice</td> 
+            <td>ProductDescription</td> 
+            <td>ProductImage</td> 
+            <td>PreparedTime</td> 
+            <td>Action</td>
+
+        
+
+        </tr> 
+        {% for product in products  %} 
+        <tr>
+        <td>{{product.product_name}}</td>
+        <td>{{product.product_price}}</td>
+        <td>{{product.product_description}}</td> 
+        <td><img src="/{{product.image}}" alt="" width="100"></td>
+        <td>{{product.prepared_at}}</td>  
+        <td>{{product.category}}</td>
+        <td><a href="/product/updateproduct/{{product.id}}">Edit</a><br> &nbsp;&nbsp;
+            <a href="/product/deleteproduct/{{product.id}}" onclick="return confirm('Are you sure want to delete this product?')">Delete</a> 
+            </td> 
+        <td>{{product.barcode}}</td>
+            
+        </tr>
+        {% endfor %}
+
+
+    </table> 
+    </div> 
+    <a href="/logout" class="btn btn-danger">Logout</a> 
+    <img src="{% static 'images/chh.jpg' %}" alt="" width="300"> 
+    <img src="{% static 'images/world best cake.jpg' %}" alt="" width="300">
+    {% endblock %}  
+
+    
+    
+    

@@ -1,0 +1,21 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}  
+
+/* * is used as selector which selects all elements of html file.Particular elements can also be selected */
+
+table{
+    border-color:aqua; 
+    width: 50%; 
+    background-color:darkorchid; 
+    table-layout:auto;
+
+} 
+
+div {
+    transform: rotate(360deg);
+    transform-origin: 20% 40%; 
+    
+  }

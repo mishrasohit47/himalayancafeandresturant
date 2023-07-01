@@ -1,0 +1,63 @@
+{% extends 'layouts.html' %} 
+
+{% load static %} 
+
+
+
+
+
+{% block title %} 
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>All Categories</title> 
+
+{% endblock %} 
+
+{% block main_content %} 
+{% for msg in messages %} 
+
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %} 
+        <div class="alert alert-success">
+            {{msg}}
+
+        </div> 
+        {% endif %} 
+
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %} 
+        <div class="alert alert-danger"> 
+            {{ msg }}
+
+        </div> 
+        {% endif %}
+
+        {% endfor %}
+
+<!--overflow is used to show horizontal scroll bar if the screen is to small -->
+
+
+
+
+<div style="overflow-x:auto;"> 
+
+    <table border="3" class="table table-bordered table-striped table-secondary"> 
+
+        <tr> 
+            <td>Category Name</td>
+            <td>Action</td>
+
+        
+
+        </tr> 
+        {% for cat in category %} 
+        <tr>
+        <td>{{cat.category_name}}</td>
+       
+        <td><a href="/product/updatecategory/{{cat.id}}"onclick="return confirm('is it sure to edit this category?')">Edit</a><br> &nbsp;&nbsp;
+            <a href="/product/deletecategory/{{cat.id}}" onclick="return confirm('Are you sure want to delete this product?')">Delete</a> 
+            </td>
+        </tr>
+        {% endfor %}
+
+
+    </table> 
+    </div> 
+    {% endblock %}

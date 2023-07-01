@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    {% block main_content %}  
+    <h1>Welcome To Recipie Khazana</h1>
+    
+    {% for recipie in recipies %}  
+
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h1 class="card-title">{{recipie.title}}</h1> 
+          <h1 class="card-subtitle mb-2 text-muted">{{recipie.direction}}</h1>
+          <p class="card-text">{{recipie.description}}</p> 
+          <p class="card-text">{{recipie.date_posted}}</p> 
+          <p class="card-text">{{recipie.created_posted}}</p> 
+          <p class="card-text">{{recipie.updated_posted}}</p>  
+          <p  class="card-text">{{recipie.chief}}</p>
+
+          <a href="#" class="btn btn-primary">investment calculator</a>
+        </div>
+      </div>
+    {% endfor %}  
+    
+    {% endblock %}
+
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% extends 'layouts.html' %} 
+
+{% block title %} 
+<title>Register</title> 
+{% endblock %} 
+
+{% load crispy_forms_tags %} 
+
+{% block main_content %} 
+<div class="d-flex justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center text-success">
+            Registration Form 
+        </h2> 
+        {% for msg in messages %} 
+
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %} 
+        <div class="alert alert-success">
+            {{msg}}
+
+        </div> 
+        {% endif %} 
+
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %} 
+        <div class="alert alert-danger"> 
+            {{ msg }}
+
+        </div> 
+        {% endif %}
+
+        {% endfor %}
+        <form action="" method="POST"  class="shadow-lg p-3"> 
+            {% csrf_token %}       <!--csrf token is mainly used for the security prupose so that the third person or hacker cannot attack or change the form data--> 
+            {{form | crispy}} 
+
+            <div class="mt-3">
+                <input type="submit" class="btn btn-primary" name="submit" value="Register">
+            </div>
+        
+
+        </form>
+    </div>
+</div> 
+<script>
+    var form_fields=document.getElementByTagName('input')
+    form_fields[1].placeholder='Enter Username'
+    form_fields[2].placeholder='Enter Password'
+    form_fields[3].placeholder='Enter the same Password'
+
+    for(field in form_fields){
+        form_fields[field].className += 'my-2'
+    }
+</script>
+
+{% endblock %}
+
